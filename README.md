@@ -41,8 +41,10 @@ All methods are passed through this function. It handles opening and closing the
         :return: passed functions return or Error String
 
         example:
+```python
         Connect(self.RunCommand, ```SQL_command_string```, save=True)
-       
+```
+
 #### RunCommand
 ```python
 @staticmethod
@@ -213,7 +215,7 @@ print("\n\nNow lets generate some random entries to fill out the database")
 from random import  randint, sample
 a = ["simple present", "Present Continuous", "Simple Past", "Past Continuous", "Present Perfect",
        "Present Perfect Continuous", "Simple Future"]
-for i in range(1):
+for i in range(1000):
     j = db.add("Material", {"id": i,
                         "hyperlink": "www.google.com",
                         'level': f'{sample(["A", "B", "C"],1)[0]}{randint(1,2)}',
