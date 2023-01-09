@@ -1,1 +1,1 @@
-from sqlitehandler import DatabaseSQLite
+from .sqlitehandler import DatabaseSQLite
