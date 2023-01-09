@@ -36,7 +36,7 @@ class DatabaseSQLite:
         :return: (list(str)) or None if path is invalid
         """
         if path is None:
-            path = self.dbPath
+            path = os.path.dirname(os.path.realpath(__file__))
         if path and os.path.exists(path):
             files = [file for file in os.listdir(path) if file.endswith(".db")]
             valid_sqlite = []
@@ -50,7 +50,7 @@ class DatabaseSQLite:
                         pass
             return valid_sqlite
 
-    def Create(self, path='', name=None):
+    def Create(self, path=None, name=None):
         """
         Connects to a database in path, default is active file, named database.db. If
         Database does not exist it will be created
@@ -61,10 +61,11 @@ class DatabaseSQLite:
         """
         if name is None:
             name = self.defaultDBName
+        if path is None:
+            self.dbPath = db.Existence(os.path.dirname(os.path.realpath(__file__)))
 
         try:
             database = sqlite3.connect(path + name)
-            print(sqlite3.version)
             if database:
                 database.close()
                 self.dbPath = path
